@@ -1,0 +1,164 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>Novel Class Discovery in Semantic Segmentation</title>
+
+    <!-- Meta tags for search engines to crawl -->
+    <meta name="robots" content="index,follow">
+    <meta name="description"
+          content="We introduce a new setting of Novel Class Discovery in Semantic Segmentation (NCDSS), which aims at segmenting unlabeled images containing new classes given prior knowledge from a labeled set of disjoint classes. In contrast to existing approaches that look at novel class discovery in image classification, we focus on the more challenging semantic segmentation. In NCDSS, we need to distinguish the objects and background, and to handle the existence of multiple classes within an image, which increases the difficulty in using the unlabeled data. To tackle this new setting, we leverage the labeled base data and a saliency model to coarsely cluster novel classes for model training in our basic framework. Additionally, we propose the Entropy-based Uncertainty Modeling and Self-training (EUMS) framework to overcome noisy pseudo-labels, further improving the model performance on the novel classes. Our EUMS utilizes an entropy ranking technique and a dynamic reassignment to distill clean labels, thereby making full use of the noisy data via self-supervised learning. We build the NCDSS benchmark on the PASCAL-5^i dataset. Extensive experiments demonstrate the feasibility of the basic framework (achieving an average mIoU of 49.81%) and the effectiveness of EUMS framework (outperforming the basic framework by 9.28% mIoU). "
+          .
+    >
+    <meta name="keywords" content="Novel Class Discovery in Semantic Segmentation;">
+    <link rel="author" href="https://yuyangzhao.com">
+
+    <!-- Fonts and stuff -->
+    <link href="./css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" type="text/css" href="./project.css" media="screen">
+    <link rel="stylesheet" type="text/css" media="screen" href="./iconize.css">
+    <script async="" src="./prettify.js"></script>
+
+</head>
+
+<body>
+<div id="content">
+    <div id="content-inner">
+
+        <div class="section head">
+            <h1>Novel Class Discovery in Semantic Segmentation</h1>
+
+            <div class="authors">
+                <a href="https://yuyangzhao.com">Yuyang Zhao</a><sup>1</sup>&nbsp;
+                <a href="https://zhunzhong.site/">Zhun Zhong</a><sup>2</sup>&nbsp;
+                <a href="https://disi.unitn.it/~sebe/">Nicu Sebe</a><sup>2</sup>&nbsp;
+                <a href="https://www.comp.nus.edu.sg/~leegh/">Gim Hee Lee</a><sup>1</sup>&nbsp;
+            </div>
+
+            <div class="affiliations">
+                1. Department of Computer Science, National University of Singapore <br>
+                2. Department of Information Engineering and Computer Science, University of Trento
+            </div>
+
+            <!-- <div class="affiliations">
+                enrico.fini@unitn.it&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;enver.sangineto@unitn.it&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;stephane.lathuiliere@telecom-paris.fr<br>
+                zhunzhong007@gmail.com&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;m.nabi@sap.com&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;e.ricci@unitn.it
+            </div> -->
+        </div>
+
+        <center><img src="./img/ncdss-intro.png" border="0" width="50%"><br>
+            Illustration of Novel Class Discovery in Semantic Segmentation (NCDSS).
+        </center>
+
+        <div class="section abstract">
+            <h2>Abstract</h2>
+            <br>
+            <p>
+                We introduce a new setting of Novel Class Discovery in Semantic Segmentation (NCDSS), which aims at segmenting unlabeled images containing new classes given prior knowledge from a labeled set of disjoint classes. In contrast to existing approaches that look at novel class discovery in image classification, we focus on the more challenging semantic segmentation. In NCDSS, we need to distinguish the objects and background, and to handle the existence of multiple classes within an image, which increases the difficulty in using the unlabeled data. To tackle this new setting, we leverage the labeled base data and a saliency model to coarsely cluster novel classes for model training in our basic framework. Additionally, we propose the Entropy-based Uncertainty Modeling and Self-training (EUMS) framework to overcome noisy pseudo-labels, further improving the model performance on the novel classes. Our EUMS utilizes an entropy ranking technique and a dynamic reassignment to distill clean labels, thereby making full use of the noisy data via self-supervised learning. We build the NCDSS benchmark on the PASCAL-5^i dataset. Extensive experiments demonstrate the feasibility of the basic framework (achieving an average mIoU of 49.81%) and the effectiveness of EUMS framework (outperforming the basic framework by 9.28% mIoU). 
+            </p>
+
+        </div>
+
+
+        <div class="section method">
+            <h2>Method Overview</h2>
+            <br>
+            <center><img src="./img/ncdss-framework.png" border="0" width="95%"><br>
+                Overview of the proposed architecture.
+            </center>
+        </div>
+
+        <div class="section results">
+            <h2>Results</h2>
+            <br>
+            <center><img src="./img/uno_result_2.png" border="0" width="55%"><br>
+                Comparison with state-of-the-art methods on CIFAR-10, CIFAR-100 and ImageNet for novel class discovery using task-aware evaluation protocol. Clustering accuracy is reported on the unlabeled set (training split). All methods except UNO initialize the encoder with self-supervised learning, except when evaluated on ImageNet. “RS+” is with incremental classifier.
+            </center>
+
+            <center><img src="./img/uno_result_3.png" border="0" width="55%"><br>
+                Comparison with state-of-the-art methods on CIFAR-10 and CIFAR-100 on both labeled and unlabeled classes, using task-agnostic evaluation protocol. Accuracy and clustering accuracy are reported on the test set.
+            </center>
+
+            <center><img src="./img/uno_tsne.png" border="0" width="55%"><br>
+                t-SNE visualization for all classes on CIFAR10. For both methods “Shared feature space” stands for the features after the last convolutional block.
+            </center>
+        </div>
+
+        <br>
+
+        <!--=================Materials==========================-->
+        <div class="section materials" , id="materials">
+            <h2>Materials</h2>
+            <table width="80%" align="center" border=none cellspacing="0" cellpadding="30">
+                <tr>
+                    <td width="60%">
+                        <center>
+                            <a href="https://arxiv.org/pdf/2112.01900.pdf" target="_blank" class="imageLink"><img
+                                    src="./img/ncl_thumb.png" , width="45%"></a><br><br>
+                            <a href="https://arxiv.org/pdf/2112.01900.pdf" target="_blank">Paper</a>
+                        </center>
+                    </td>
+                    <td width="40%" valign="middle">
+                        <center>
+                            <a href="" target="_blank"
+                               class="imageLink"><img
+                                    src="./icon_github.png" , width="50%"></a><br><br>
+                            <a href="" target="_blank">Codes (To release)</a>
+                        </center>
+                    </td>
+                </tr>
+            </table>
+        </div>
+
+        <br>
+
+        <div class="section citation">
+            <h2>Citation</h2>
+            <div class="section bibtex">
+      <pre>
+@inproceedings{zhao2022ncdss,
+title={Novel Class Discovery in Semantic Segmentation},
+author={Zhao, Yuyang and Zhong, Zhun and Sebe, Nicu and Lee, Gim Hee},
+booktitle={Proceedings of IEEE Conference on Computer Vision and Pattern Recognition (CVPR)},
+year={2022}}
+    </pre>
+            </div>
+        </div>
+
+        <div class="section relatedwork">
+            <h2>Related Work</h2>
+            <br>
+            <div class="citation">
+                <a href="https://arxiv.org/abs/2004.05551">
+                    OpenMix: Reviving Known Knowledge for Discovering Novel Visual Categories in An Open World. CVPR,
+                    2021.
+                </a>
+                <br>
+            </div>
+
+                        <div class="citation">
+                <a href="https://arxiv.org/abs/2004.05551">
+                    Neighborhood Contrastive Learning for Novel Class Discovery. CVPR, 2021.
+                </a>
+                <br>
+            </div>
+
+            <div class="citation">
+                <a href="https://openreview.net/forum?id=BJl2_nVFPB">
+                    Automatically discovering and learning new visual categories with ranking statistics. ICLR, 2020.
+                </a>
+                <br>
+            </div>
+
+            <div class="citation">
+                <a href="https://openaccess.thecvf.com/content_ICCV_2019/papers/Han_Learning_to_Discover_Novel_Visual_Categories_via_Deep_Transfer_Clustering_ICCV_2019_paper.pdf">
+                    Learning to discover novel visual categories via deep transfer clustering. ICCV, 2019.
+                </a>
+                <br>
+            </div>
+
+        </div>
+
+</body>
+</html>
